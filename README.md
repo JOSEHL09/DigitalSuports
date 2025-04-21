@@ -34,14 +34,6 @@ Este proyecto es un sistema web desarrollado en Java con arquitectura MVC para l
 ✅ Conexión a base de datos con validación  
 
 ---
-
-## 🛠️ Cómo Ejecutar
-
-1. Clona este repositorio:
-
-```bash
-git clone https://github.com/JOSEHL09/DigitalSuports.git
-
 ## 🗂️ Base de Datos
 
 Este proyecto incluye un archivo llamado `script.sql` ubicado en la raíz del repositorio. Este archivo contiene todos los scripts necesarios para crear la base de datos, las tablas y las relaciones requeridas por el sistema.
@@ -61,4 +53,12 @@ Este proyecto incluye un archivo llamado `script.sql` ubicado en la raíz del re
 6. Ejecuta el script (F5)
 
 > 🔐 **Nota**: Asegúrate de configurar correctamente las credenciales de conexión en tu archivo de configuración Java (por ejemplo, en `TestConexionServlet.java`).
+>
+> ## 🛠️ Cómo Ejecutar el Proyecto
+
+1. Clona este repositorio:
+
+```bash
+git clone https://github.com/JOSEHL09/DigitalSuports.git
+
 
