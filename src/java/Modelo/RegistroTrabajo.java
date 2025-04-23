@@ -11,59 +11,22 @@ import java.util.Date;
  * @author huama
  */
 public class RegistroTrabajo {
-    
-    private int idRegistro;
-    private int idColaborador;
-    private int idSolicitud;
+    private int idRegistroTrabajo;
+    private DetalleSolicitud detalleSolicitud;
+    private Colaborador colaborador;
     private Date fecha;
     private String actividad;
     private double horasTrabajadas;
+    private boolean estado;
 
-    public int getIdRegistro() {
-        return idRegistro;
-    }
-
-    public void setIdRegistro(int idRegistro) {
-        this.idRegistro = idRegistro;
-    }
-
-    public int getIdColaborador() {
-        return idColaborador;
-    }
-
-    public void setIdColaborador(int idColaborador) {
-        this.idColaborador = idColaborador;
-    }
-
-    public int getIdSolicitud() {
-        return idSolicitud;
-    }
-
-    public void setIdSolicitud(int idSolicitud) {
-        this.idSolicitud = idSolicitud;
-    }
-
-    public Date getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
-
-    public String getActividad() {
-        return actividad;
-    }
-
-    public void setActividad(String actividad) {
+    public RegistroTrabajo(DetalleSolicitud solicitud, Colaborador colaborador, String actividad, double horas) {
+        this.detalleSolicitud = solicitud;
+        this.colaborador = colaborador;
+        this.fecha = new Date();
         this.actividad = actividad;
+        this.horasTrabajadas = horas;
+        this.estado = true;
     }
-
-    public double getHorasTrabajadas() {
-        return horasTrabajadas;
-    }
-
-    public void setHorasTrabajadas(double horasTrabajadas) {
-        this.horasTrabajadas = horasTrabajadas;
-    } 
+    // Getters y Setters...
 }
+

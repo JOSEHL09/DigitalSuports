@@ -4,6 +4,8 @@
  */
 package Modelo;
 
+import java.util.Date;
+
 /**
  *
  * @author huama
@@ -13,65 +15,36 @@ public class Usuario {
     private int idUsuario;
     private String nombre;
     private String apellido;
+    private String genero;
+    private int edad;
+    private Date fechaNacimiento;
     private String email;
-    private String contraseña;
-    private String tipoUsuario;
-    private String estado;
-    
-    public int getIdUsuario() {
-        return idUsuario;
-    }
+    private String contrasena;
+    private TipoUsuario tipoUsuario;
+    private boolean estado;
 
-    public void setIdUsuario(int idUsuario) {
+    public Usuario(int idUsuario, String nombre, String apellido, String email) {
         this.idUsuario = idUsuario;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
         this.apellido = apellido;
-    }
-
-    public String getEmail() {
-        return email;
+        setEmail(email);
+        this.estado = true;
     }
 
     public void setEmail(String email) {
+        if (!email.contains("@")) {
+            throw new IllegalArgumentException("Correo no válido");
+        }
         this.email = email;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getNombreCompleto() {
+        return nombre + " " + apellido;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    @Override
+    public String toString() {
+        return getNombreCompleto() + " - " + email;
     }
-
-    public String getTipoUsuario() {
-        return tipoUsuario;
-    }
-
-    public void setTipoUsuario(String tipoUsuario) {
-        this.tipoUsuario = tipoUsuario;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-    
+    // Getters y Setters...
 }

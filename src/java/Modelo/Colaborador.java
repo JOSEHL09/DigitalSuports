@@ -9,50 +9,37 @@ package Modelo;
  * @author huama
  */
 public class Colaborador {
-    
     private int idColaborador;
     private String nombre;
+    private String apellido;
     private String email;
-    private String rol;
-    private String estado;
+    private String contrasena;
+    private RolColaborador rol;
+    private boolean estado;
 
-    public int getIdColaborador() {
-        return idColaborador;
-    }
-
-    public void setIdColaborador(int idColaborador) {
+    public Colaborador(int idColaborador, String nombre, String apellido, String email, RolColaborador rol) {
         this.idColaborador = idColaborador;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getEmail() {
-        return email;
+        this.apellido = apellido;
+        setEmail(email);
+        this.rol = rol;
+        this.estado = true;
     }
 
     public void setEmail(String email) {
+        if (!email.contains("@")) {
+            throw new IllegalArgumentException("Correo no válido");
+        }
         this.email = email;
     }
 
-    public String getRol() {
-        return rol;
+    public String getNombreCompleto() {
+        return nombre + " " + apellido;
     }
 
-    public void setRol(String rol) {
-        this.rol = rol;
+    @Override
+    public String toString() {
+        return getNombreCompleto() + " - " + email;
     }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }   
+    // Getters y Setters...
 }
