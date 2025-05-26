@@ -4,19 +4,42 @@
  */
 package Modelo;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import java.io.Serializable;
+import java.util.List;
+import javax.persistence.Entity;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /**
  *
  * @author huama
  */
-public class TipoSolicitud {
+@Entity
+@Table(name = "TipoSolicitud")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class TipoSolicitud implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "nIdTipoSolicitud")
     private int idTipoSolicitud;
+
+    @Column(name = "sDescripcion", nullable = false, length = 100)
     private String descripcion;
+
+    @Column(name = "bEstado")
     private boolean estado;
 
-    public TipoSolicitud(int id, String descripcion) {
-        this.idTipoSolicitud = id;
-        this.descripcion = descripcion;
-        this.estado = true;
-    }
-    // Getters y Setters...
+    @OneToMany(mappedBy = "tipoSolicitud")
+    private List<Solicitud> solicitudes;
 }
