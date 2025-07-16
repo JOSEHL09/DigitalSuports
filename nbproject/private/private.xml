@@ -3,7 +3,27 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/huama/OneDrive/Documentos/NetBeansProjects/DigitalSuports/web/View/index.jsp</file>
+            <file>file:/D:/Usuarios/huama/NetBeansProjects/dsa/DigitalSuports/web/View/avancesColaborador.jsp</file>
+            <file>file:/D:/Usuarios/huama/NetBeansProjects/dsa/DigitalSuports/src/java/Dao/AsignacionSolicitudDAO.java</file>
+            <file>file:/D:/Usuarios/huama/NetBeansProjects/dsa/DigitalSuports/src/java/Dao/ClienteDAO.java</file>
+            <file>file:/D:/Usuarios/huama/NetBeansProjects/dsa/DigitalSuports/src/java/Dao/ColaboradorDAO.java</file>
+            <file>file:/D:/Usuarios/huama/NetBeansProjects/dsa/DigitalSuports/src/java/Dao/DashboardDAO.java</file>
+            <file>file:/D:/Usuarios/huama/NetBeansProjects/dsa/DigitalSuports/src/java/Dao/EstadisticasDAO.java</file>
+            <file>file:/D:/Usuarios/huama/NetBeansProjects/dsa/DigitalSuports/src/java/Dao/MostrarSolicitudesDAO.java</file>
+            <file>file:/D:/Usuarios/huama/NetBeansProjects/dsa/DigitalSuports/src/java/Dao/SolicitudDAO.java</file>
+            <file>file:/D:/Usuarios/huama/NetBeansProjects/dsa/DigitalSuports/src/java/Dao/UsuarioClienteDAO.java</file>
+            <file>file:/D:/Usuarios/huama/NetBeansProjects/dsa/DigitalSuports/src/java/Dao/VerSolicitudDAO.java</file>
+            <file>file:/D:/Usuarios/huama/NetBeansProjects/dsa/DigitalSuports/src/java/Controlador/VerSolicitudServlet.java</file>
+            <file>file:/D:/Usuarios/huama/NetBeansProjects/dsa/DigitalSuports/src/java/Controlador/TestConexionServlet.java</file>
+            <file>file:/D:/Usuarios/huama/NetBeansProjects/dsa/DigitalSuports/src/java/Controlador/SolicitudServlet.java</file>
+            <file>file:/D:/Usuarios/huama/NetBeansProjects/dsa/DigitalSuports/src/java/Controlador/MostrarSolicitudesServlet.java</file>
+            <file>file:/D:/Usuarios/huama/NetBeansProjects/dsa/DigitalSuports/src/java/Controlador/LoginServerlet.java</file>
+            <file>file:/D:/Usuarios/huama/NetBeansProjects/dsa/DigitalSuports/src/java/Controlador/EstadisticasServlet.java</file>
+            <file>file:/D:/Usuarios/huama/NetBeansProjects/dsa/DigitalSuports/src/java/Controlador/DashboardServlet.java</file>
+            <file>file:/D:/Usuarios/huama/NetBeansProjects/dsa/DigitalSuports/src/java/Controlador/ColaboradorServlet.java</file>
+            <file>file:/D:/Usuarios/huama/NetBeansProjects/dsa/DigitalSuports/src/java/Controlador/ClienteServlet.java</file>
+            <file>file:/D:/Usuarios/huama/NetBeansProjects/dsa/DigitalSuports/src/java/Controlador/CerrarSesionServlet.java</file>
+            <file>file:/D:/Usuarios/huama/NetBeansProjects/dsa/DigitalSuports/src/java/Controlador/AsignacionSolicitudServlet.java</file>
         </group>
     </open-files>
 </project-private>

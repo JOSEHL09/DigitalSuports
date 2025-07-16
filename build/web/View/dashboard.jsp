@@ -272,6 +272,16 @@
                 }
             }
         });
+        
+        // Filtro búsqueda en tabla
+        document.getElementById("busqueda").addEventListener("keyup", function () {
+            let filtro = this.value.toLowerCase();
+            let filas = document.querySelectorAll("#tablaSolicitudes tbody tr");
+            filas.forEach(fila => {
+                let texto = fila.innerText.toLowerCase();
+                fila.style.display = texto.includes(filtro) ? "" : "none";
+            });
+        });
     </script>
 </body>
 </html>

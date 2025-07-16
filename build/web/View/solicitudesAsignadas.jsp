@@ -10,12 +10,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Panel Solicitudes Asignadas con Detalle</title>
+  <title>Gestión de Tickets</title>
 
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
 
   <style>
-    /* Reset y cuerpo base */
     body {
       background-color: #f4f7fa;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -38,7 +37,6 @@
       user-select: none;
     }
 
-    /* Header Panel */
     .panel-header {
       padding: 25px 30px;
       text-align: center;
@@ -58,7 +56,6 @@
       margin: 0;
     }
 
-    /* Estadísticas resumidas */
     .tickets-info {
       display: flex;
       justify-content: space-around;
@@ -97,7 +94,6 @@
       color: #1a237e;
     }
 
-    /* Contenedor principal: menú tickets + detalle */
     .main-content {
       display: flex;
       height: 400px;
@@ -105,7 +101,6 @@
       overflow: hidden;
     }
 
-    /* Menú lateral de tickets */
     .tickets-menu {
       width: 240px;
       border-right: 1px solid #d6d9f2;
@@ -142,7 +137,6 @@
       color: #122f8c;
     }
 
-    /* Contenido detalle ticket */
     .ticket-detail {
       flex-grow: 1;
       padding: 25px 30px;
@@ -169,7 +163,23 @@
       color: #122f8c;
     }
 
-    .btn-review {
+    select#estado-select {
+      padding: 8px 12px;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: 1.5px solid #224abe;
+      font-weight: 600;
+      color: #224abe;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    select#estado-select:hover, select#estado-select:focus {
+      background-color: #c1d1ff;
+      outline: none;
+      border-color: #122f8c;
+    }
+
+    .btn-review, #btn-delete, #btn-add-ticket {
       background: #224abe;
       color: white;
       padding: 12px 26px;
@@ -181,14 +191,28 @@
       box-shadow: 0 5px 15px rgba(34, 74, 190, 0.4);
       transition: background-color 0.3s ease, box-shadow 0.3s ease;
       user-select: none;
+      margin-right: 10px;
     }
 
-    .btn-review:hover {
+    #btn-delete {
+      background: #e53935;
+    }
+    #btn-delete:hover {
+      background-color: #b71c1c;
+      box-shadow: 0 8px 25px rgba(183, 28, 28, 0.7);
+    }
+
+    .btn-review:hover, #btn-add-ticket:hover {
       background-color: #122f8c;
       box-shadow: 0 8px 25px rgba(18, 47, 140, 0.7);
     }
 
-    /* Responsive: menú arriba y detalle abajo en móvil */
+    #btn-add-ticket {
+      margin: 15px auto;
+      display: block;
+      max-width: 200px;
+    }
+
     @media (max-width: 650px) {
       .main-content {
         flex-direction: column;
@@ -210,148 +234,199 @@
 </head>
 <body>
 
-  <div class="panel-container" role="main" aria-label="Panel de solicitudes asignadas con detalle">
+  <div class="panel-container" role="main" aria-label="Panel de gestión de tickets">
 
     <div class="panel-header" tabindex="0">
-      <i class="fas fa-tasks" aria-hidden="true"></i>
-      <h3>Solicitudes Asignadas</h3>
+      <i class="fas fa-ticket-alt" aria-hidden="true"></i>
+      <h3>Gestión de Tickets</h3>
     </div>
 
-    <div class="tickets-info" aria-label="Resumen de tickets asignados">
-      <div class="ticket-box" aria-label="Total de tickets asignados">
-        <div class="number">27</div>
-        <div class="label">Tickets Asignados</div>
+    <div class="tickets-info" aria-label="Resumen de tickets">
+      <div class="ticket-box" aria-label="Total de tickets">
+        <div id="total-tickets" class="number">0</div>
+        <div class="label">Total Tickets</div>
       </div>
       <div class="ticket-box" aria-label="Tickets pendientes">
-        <div class="number">14</div>
+        <div id="pendientes-tickets" class="number">0</div>
         <div class="label">Pendientes</div>
       </div>
       <div class="ticket-box" aria-label="Tickets en proceso">
-        <div class="number">9</div>
+        <div id="enproceso-tickets" class="number">0</div>
         <div class="label">En Proceso</div>
       </div>
       <div class="ticket-box" aria-label="Tickets cerrados">
-        <div class="number">4</div>
+        <div id="cerrados-tickets" class="number">0</div>
         <div class="label">Cerrados</div>
       </div>
     </div>
 
+    <button id="btn-add-ticket" class="btn-review" aria-label="Agregar nuevo ticket">Agregar Nuevo Ticket</button>
+
     <div class="main-content">
 
-      <nav class="tickets-menu" aria-label="Menú de tickets asignados">
+      <nav class="tickets-menu" aria-label="Menú de tickets">
         <h4>Tickets</h4>
-        <div class="ticket-item active" tabindex="0" data-id="1">#001 - Problema en impresora</div>
-        <div class="ticket-item" tabindex="0" data-id="2">#002 - Error en software contable</div>
-        <div class="ticket-item" tabindex="0" data-id="3">#003 - Solicitud de acceso VPN</div>
-        <div class="ticket-item" tabindex="0" data-id="4">#004 - Actualización de hardware</div>
-        <div class="ticket-item" tabindex="0" data-id="5">#005 - Problema con correo electrónico</div>
+        <div id="tickets-list">
+          <!-- Lista de tickets aquí -->
+        </div>
       </nav>
 
       <section class="ticket-detail" aria-live="polite" aria-atomic="true" tabindex="0">
-        <h4 id="ticket-title">#001 - Problema en impresora</h4>
+        <h4 id="ticket-title">Seleccione un ticket</h4>
         <div class="ticket-info">
-          <p><strong>Cliente:</strong> Empresa XYZ</p>
-          <p><strong>Fecha de apertura:</strong> 2025-05-10</p>
-          <p><strong>Estado:</strong> Pendiente</p>
-          <p><strong>Descripción:</strong> La impresora no responde al enviar documentos desde varios equipos. Se requiere revisión urgente.</p>
+          <p><strong>Cliente:</strong> <span id="cliente-info"></span></p>
+          <p><strong>Fecha de apertura:</strong> <span id="fecha-info"></span></p>
+          <p><strong>Estado:</strong>
+            <select id="estado-select" aria-label="Seleccionar estado del ticket">
+              <option value="Pendiente">Pendiente</option>
+              <option value="En Proceso">En Proceso</option>
+              <option value="Cerrado">Cerrado</option>
+              <option value="Otro">Otro</option>
+            </select>
+          </p>
+          <p><strong>Descripción:</strong> <span id="desc-info"></span></p>
         </div>
-        <button class="btn-review" aria-label="Marcar ticket como revisado">Marcar como revisado</button>
+        <button id="btn-save" class="btn-review" aria-label="Guardar cambios del ticket">Guardar Cambios</button>
+        <button id="btn-delete" class="btn-review" aria-label="Eliminar ticket">Eliminar Ticket</button>
       </section>
 
     </div>
-
   </div>
 
-<script>
-  const ticketsData = {
-    1: {
-      title: "#001 - Problema en impresora",
-      cliente: "Empresa XYZ",
-      fecha: "2025-05-10",
-      estado: "Pendiente",
-      descripcion: "La impresora no responde al enviar documentos desde varios equipos. Se requiere revisión urgente."
-    },
-    2: {
-      title: "#002 - Error en software contable",
-      cliente: "Comercial ABC",
-      fecha: "2025-05-08",
-      estado: "En Proceso",
-      descripcion: "Se presenta un error crítico en el módulo de facturación que impide generar reportes."
-    },
-    3: {
-      title: "#003 - Solicitud de acceso VPN",
-      cliente: "Consultores DEF",
-      fecha: "2025-05-15",
-      estado: "Pendiente",
-      descripcion: "Solicitud para acceso remoto vía VPN para nuevos empleados."
-    },
-    4: {
-      title: "#004 - Actualización de hardware",
-      cliente: "Industria GHI",
-      fecha: "2025-05-05",
-      estado: "Cerrado",
-      descripcion: "Se actualizó la memoria RAM y disco duro de las estaciones de trabajo."
-    },
-    5: {
-      title: "#005 - Problema con correo electrónico",
-      cliente: "Servicios JKL",
-      fecha: "2025-05-12",
-      estado: "Pendiente",
-      descripcion: "No se pueden enviar correos salientes desde la cuenta principal."
+  <script>
+    let ticketsData = JSON.parse(localStorage.getItem('ticketsData')) || {
+      1: { title: "#001 - Problema en impresora", cliente: "Empresa XYZ", fecha: "2025-05-10", estado: "Pendiente", descripcion: "La impresora no responde al enviar documentos desde varios equipos." },
+      2: { title: "#002 - Error en software contable", cliente: "Comercial ABC", fecha: "2025-05-08", estado: "En Proceso", descripcion: "Error crítico en módulo facturación." },
+      3: { title: "#003 - Solicitud de acceso VPN", cliente: "Consultores DEF", fecha: "2025-05-15", estado: "Pendiente", descripcion: "Solicitud acceso remoto VPN." }
+    };
+
+    let currentTicketId = null;
+
+    const ticketsListEl = document.getElementById('tickets-list');
+    const titleEl = document.getElementById('ticket-title');
+    const clienteEl = document.getElementById('cliente-info');
+    const fechaEl = document.getElementById('fecha-info');
+    const estadoSelect = document.getElementById('estado-select');
+    const descEl = document.getElementById('desc-info');
+    const btnSave = document.getElementById('btn-save');
+    const btnDelete = document.getElementById('btn-delete');
+    const btnAdd = document.getElementById('btn-add-ticket');
+
+    const totalEl = document.getElementById('total-tickets');
+    const pendientesEl = document.getElementById('pendientes-tickets');
+    const enprocesoEl = document.getElementById('enproceso-tickets');
+    const cerradosEl = document.getElementById('cerrados-tickets');
+
+    function saveTickets() {
+      localStorage.setItem('ticketsData', JSON.stringify(ticketsData));
     }
-  };
 
-  const menuItems = document.querySelectorAll('.ticket-item');
-  const titleEl = document.getElementById('ticket-title');
-  const detailSection = titleEl.parentElement;
-  const btnReview = detailSection.querySelector('.btn-review');
+    function updateSummary() {
+      const tickets = Object.values(ticketsData);
+      totalEl.textContent = tickets.length;
+      pendientesEl.textContent = tickets.filter(t => t.estado === 'Pendiente').length;
+      enprocesoEl.textContent = tickets.filter(t => t.estado === 'En Proceso').length;
+      cerradosEl.textContent = tickets.filter(t => t.estado === 'Cerrado').length;
+    }
 
-  function updateTicketDetail(id) {
-    const data = ticketsData[id];
-    if (!data) return;
+    function renderTickets() {
+      ticketsListEl.innerHTML = '';
+      Object.keys(ticketsData).forEach(id => {
+        const ticket = ticketsData[id];
+        const div = document.createElement('div');
+        div.className = 'ticket-item';
+        div.setAttribute('tabindex', '0');
+        div.dataset.id = id;
+        div.textContent = ticket.title + " (" + ticket.estado + ")";
+        if (id === currentTicketId) div.classList.add('active');
+        div.addEventListener('click', () => selectTicket(id));
+        div.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            selectTicket(id);
+          }
+        });
+        ticketsListEl.appendChild(div);
+      });
+    }
 
-    titleEl.textContent = data.title;
+    function selectTicket(id) {
+      currentTicketId = id;
+      const ticket = ticketsData[id];
+      if (!ticket) return;
 
-    detailSection.querySelector('.ticket-info').innerHTML = `
-      <p><strong>Cliente:</strong> ${data.cliente}</p>
-      <p><strong>Fecha de apertura:</strong> ${data.fecha}</p>
-      <p><strong>Estado:</strong> <span id="estado-ticket">${data.estado}</span></p>
-      <p><strong>Descripción:</strong> ${data.descripcion}</p>
-    `;
+      titleEl.textContent = ticket.title;
+      clienteEl.textContent = ticket.cliente;
+      fechaEl.textContent = ticket.fecha;
+      estadoSelect.value = ticket.estado || 'Pendiente';
+      descEl.textContent = ticket.descripcion;
 
-    detailSection.focus();
-  }
+      renderTickets();
+    }
 
-  menuItems.forEach(item => {
-    item.addEventListener('click', () => {
-      
-      menuItems.forEach(i => i.classList.remove('active'));
-      item.classList.add('active');
-
-      updateTicketDetail(item.dataset.id);
+    btnSave.addEventListener('click', () => {
+      if (!currentTicketId) {
+        alert('Selecciona un ticket primero.');
+        return;
+      }
+      let ticket = ticketsData[currentTicketId];
+      // Actualizar estado del select
+      ticket.estado = estadoSelect.value;
+      saveTickets();
+      renderTickets();
+      updateSummary();
+      alert('Cambios guardados correctamente.');
     });
 
-    item.addEventListener('keydown', e => {
- 
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        item.click();
+    btnDelete.addEventListener('click', () => {
+      if (!currentTicketId) {
+        alert('Selecciona un ticket primero.');
+        return;
+      }
+      if (confirm('¿Estás seguro que deseas eliminar este ticket?')) {
+        delete ticketsData[currentTicketId];
+        currentTicketId = null;
+        clearDetail();
+        saveTickets();
+        renderTickets();
+        updateSummary();
       }
     });
-  });
 
-  btnReview.addEventListener('click', () => {
+    btnAdd.addEventListener('click', () => {
+      const nuevoId = Date.now().toString();
+      const titulo = prompt("Título del ticket:");
+      if (!titulo) return alert("Título obligatorio.");
+      const cliente = prompt("Cliente:");
+      const fecha = new Date().toISOString().split('T')[0];
+      const descripcion = prompt("Descripción:");
+      ticketsData[nuevoId] = {
+        title: titulo,
+        cliente: cliente || 'Cliente no especificado',
+        fecha,
+        estado: 'Pendiente',
+        descripcion: descripcion || ''
+      };
+      saveTickets();
+      selectTicket(nuevoId);
+      renderTickets();
+      updateSummary();
+    });
 
-    const estadoEl = document.getElementById('estado-ticket');
-    if (estadoEl.textContent !== "Cerrado") {
-      estadoEl.textContent = "En Proceso";
-      alert("Estado actualizado a 'En Proceso'");
-    } else {
-      alert("El ticket ya está cerrado.");
+    function clearDetail() {
+      titleEl.textContent = 'Seleccione un ticket';
+      clienteEl.textContent = '';
+      fechaEl.textContent = '';
+      estadoSelect.value = 'Pendiente';
+      descEl.textContent = '';
     }
-  });
 
-</script>
+    // Inicializar
+    renderTickets();
+    updateSummary();
+    const primerId = Object.keys(ticketsData)[0];
+    if (primerId) selectTicket(primerId);
+  </script>
 
 </body>
 </html>

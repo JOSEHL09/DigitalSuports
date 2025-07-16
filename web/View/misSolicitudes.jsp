@@ -121,6 +121,23 @@
             background-color: #2ecc71;
         }
 
+        /* Estilos para filtro */
+        .filtro-container {
+            max-width: 320px;
+            margin: 0 auto 30px auto;
+            text-align: center;
+        }
+
+        select#filtro-estado {
+            padding: 8px 12px;
+            font-size: 16px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            width: 100%;
+            max-width: 200px;
+        }
+
         @media (min-width: 700px) {
             .contenedor {
                 justify-content: flex-start;
@@ -135,6 +152,15 @@
 <body>
 
     <h1>Estado de tus Solicitudes</h1>
+
+    <div class="filtro-container">
+        <label for="filtro-estado"><strong>Filtrar por Estado:</strong></label><br/>
+        <select id="filtro-estado" aria-label="Filtrar solicitudes por estado">
+            <option value="todos" selected>Todos</option>
+            <option value="Finalizado">Finalizado</option>
+            <option value="Pendiente">Pendiente</option>
+        </select>
+    </div>
 
     <div class="contenedor" id="contenedor">
         <%
@@ -151,7 +177,7 @@
 
             for (String[] s : solicitudes) {
         %>
-        <div class="tarjeta" id="tarjeta-<%=s[0]%>">
+        <div class="tarjeta" id="tarjeta-<%=s[0]%>" data-estado="<%= s[3] %>">
             <h3><%= s[1] %></h3>
             <div class="info"><strong>ID:</strong> <%= s[0] %></div>
             <div class="info"><strong>Tipo:</strong> <span id="tipo-<%=s[0]%>"><%= s[2] %></span></div>
@@ -178,5 +204,24 @@
         </div>
         <% } %>
     </div>
+
+<script>
+    const filtroEstado = document.getElementById('filtro-estado');
+    const tarjetas = document.querySelectorAll('.tarjeta');
+
+    filtroEstado.addEventListener('change', () => {
+        const filtro = filtroEstado.value;
+
+        tarjetas.forEach(tarjeta => {
+            const estado = tarjeta.getAttribute('data-estado');
+            if (filtro === 'todos' || estado === filtro) {
+                tarjeta.style.display = 'block';
+            } else {
+                tarjeta.style.display = 'none';
+            }
+        });
+    });
+</script>
+
 </body>
 </html>
