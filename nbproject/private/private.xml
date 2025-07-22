@@ -24,6 +24,17 @@
             <file>file:/D:/Usuarios/huama/NetBeansProjects/dsa/DigitalSuports/src/java/Controlador/ClienteServlet.java</file>
             <file>file:/D:/Usuarios/huama/NetBeansProjects/dsa/DigitalSuports/src/java/Controlador/CerrarSesionServlet.java</file>
             <file>file:/D:/Usuarios/huama/NetBeansProjects/dsa/DigitalSuports/src/java/Controlador/AsignacionSolicitudServlet.java</file>
+            <file>file:/D:/Usuarios/huama/NetBeansProjects/dsa/DigitalSuports/web/View/index.jsp</file>
+            <file>file:/D:/Usuarios/huama/NetBeansProjects/dsa/DigitalSuports/web/View/login.jsp</file>
+            <file>file:/D:/Usuarios/huama/NetBeansProjects/dsa/DigitalSuports/web/View/listaClientes.jsp</file>
+            <file>file:/D:/Usuarios/huama/NetBeansProjects/dsa/DigitalSuports/src/java/Modelo/Cliente.java</file>
+            <file>file:/D:/Usuarios/huama/NetBeansProjects/dsa/DigitalSuports/web/WEB-INF/web.xml</file>
+            <file>file:/D:/Usuarios/huama/NetBeansProjects/dsa/DigitalSuports/web/META-INF/context.xml</file>
+            <file>file:/D:/Usuarios/huama/NetBeansProjects/dsa/DigitalSuports/src/java/Util/conexionBD.java</file>
+            <file>file:/D:/Usuarios/huama/NetBeansProjects/dsa/DigitalSuports/web/View/verSolicitudes.jsp</file>
+            <file>file:/D:/Usuarios/huama/NetBeansProjects/dsa/DigitalSuports/web/View/estadisticas.jsp</file>
+            <file>file:/D:/Usuarios/huama/NetBeansProjects/dsa/DigitalSuports/src/java/Modelo/Aplicativo.java</file>
+            <file>file:/D:/Usuarios/huama/NetBeansProjects/dsa/DigitalSuports/web/View/misSolicitudes.jsp</file>
         </group>
     </open-files>
 </project-private>
